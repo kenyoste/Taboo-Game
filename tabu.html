@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <title>Tabu Oyunu</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicontabu.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="tabu.css">
+    <link rel="stylesheet" media="screen and (max-width:500px)" href="TabuMobile.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="tabu oyunu, kelime oyunu, kart oyunu, takım oyunu">
+    <meta name="description" content="Tabu, takım halinde oynanan bir kelime oyunudur. Oyunda bir anlatıcı bulunur ve anlatıcının belirli bir kelimeyi takım arkadaşlarına anlatması gerekmektedir. Ancak anlatıcı, belirli kısıtlamalara tabidir ve belli kelimeleri veya ipuçlarını kullanamaz. 
+        Oyun, hızlı düşünme, kelime ilişkilendirme ve iletişim becerilerini geliştirmeyi amaçlar.">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@1,300&display=swap" rel="stylesheet">
+    </head>
+
+<body>
+    <div class="container">
+        <h1>Tabu Oyunu</h1>
+        <div class="card">
+            <h2 id="word"></h2>
+            <hr>
+            <ul id="forbidden"></ul>
+        </div>
+        <div class="buttons">
+            <button id="newCard">Yeni Kart</button>
+            <button id="tabu">Tabu</button>
+            <button id="pass">Pas </button>
+            <button id="pass-turn-btn" class="btn btn-secondary" style="display: none" ; onclick="passTurn()">Diğer
+                Takıma Geç</button>
+        </div>
+        <div class="scoreboard">
+            <h3 class="ts" style="background-color: #09a9ac;">1. Takım: <span id="team1Score">0</span><i
+                    class="fa-solid fa-check" class="checkIcon" id="checkIcon1"></i></h3>
+            <div class="timer" id="timer">60</div>
+            <h3 class="ts" style="background-color: #a40000;">2. Takım: <span id="team2Score">0 </span> <i
+                    class="fa-solid fa-check" class="checkIcon" id="checkIcon2"></i></h3>
+        </div>
+        <div class="timer-bar">
+            <div class="timer-bar-progress"></div>
+        </div>
+        <div class="circle-timer">
+            <div class="progress"></div>
+        </div>
+    </div>
+    <div class="icons">
+        <i class="fa fa-gear" id="gear" style="margin-bottom:11px ;"></i>
+        <a href="#oyunTanitimi" style="text-decoration: none;"><i class="fa-solid fa-question" id="fa-question"></i></a>
+    </div>
+    <div class="sayfa">
+        <i class="fa fa-remove" id="kapat"></i>
+        <span id="infoPas">Sınırsız Pas İçin "00" Yazınız.</span>
+        <div class="pasHakki">
+
+            <input type="number" min="0" max="100" id="sayfaInput" style="margin-bottom: 1em;">
+            <button style="margin-bottom: 1em;" id="pasQ"> Kaç Pas Hakkı Olsun?</button>
+        </div>
+        <div class="sayfaButonlariDiv">
+            <button id="bitir" class="sayfaButonu">Süreyi Bitir!</button>
+            <button id="resetle" class="sayfaButonu">Skoru Sıfırla</button>
+        </div>
+        <div class="onaylar">
+            <input type="checkbox" id="checkBox" style="margin-right: 10px;">
+            <span style="margin: 10px 0;">Tabu olduğunda skor "1" azalsın.</span>
+        </div>
+    </div>
+    <div id="oyunTanitimi">
+        <ul style="list-style-type: armenian; ">
+            <li>2 takım halinde oynanır. İstenirse birden çok takım ile turnuva halinde oynanabilir.
+                <i class="fa fa-remove" id="infoRemoveIcon"
+                    style="position: absolute; top: -22px; right: 7px; color: red; font-size: 2em; cursor: pointer;"></i>
+            </li>
+            <li> Anlatıcı bulunması gereken kelimeyi, yasaklı olan 4 kelimeyi kullanmadan anlatmaya çalışır.</li>
+            <li> Anlatıcı kelimeyi eli veya ayağı ile anlatamaz.</li>
+            <li> Her takımın 60 saniye süresi vardır. 15 saniye kaldığında çanlar çalmaya başlar. Süre bittiğinde zil
+                çalar.</li>
+            <li>Oyunun hangi takımda olduğunu gösteren bir tik işareti takımın skor tablosunun altına yerleştirilir.
+            </li>
+            <li style="margin-top: 7px; ">- Butonlar -</li>
+            <li>Yeni kart: Takım anlatıcının anlattığı kelimeyi bilirse bu butona basılır ve takım 1 puan alır.</li>
+            <li>Tabu: Anlatıcı anlatırken yasaklı kelimeleri veya kelimenin kendisini söylerse bu butona basılır ve yeni
+                kelime gelir</li>
+            <li>Pas: Anlatıcı, kelimeyi zor bulursa pas der ve yeni kelime gelir.</li>
+            <li>Diğer Takıma Geç: Bir takımın süresi dolduğunda vcce diğer takım oyuna hazır olduğunda bu butona basılır
+                ve oyun diğer takım için başlar.</li>
+        </ul>
+    </div>
+    <audio id="audio" src="an.mp3"></audio>
+
+    <div id="version">
+        <div id="releaseNotes">
+            <ul>
+                <li>v1.0 Tabu Oyunumuzun ilk versiyonuyla yaratıcı düşünceyi teşvik eden keyifli anlar yaşayın.<i
+                        class="fa fa-remove" id="rlsIcon"
+                        style="position: absolute; top:-20px; right: 7px;cursor: pointer; color: red; font-size: 25px;"></i>
+                </li>
+                <li>v1.1 Yasaklı kelimelerdeki bazı anlamsız kelimeler değiştirildi.</li>
+                <li>v1.2 Geri sayım 2 takımın skor barının ortasına yerleştirildi. Ayrıca en alta sürenin bitimine göre
+                    ayarlanmış (60s) bir timer-bar eklendi.</li>
+                <li>v1.3 Ayarlar ve Oyun tanıtım butonu eklendi. Artık oyuncular oyunu kendi zevklerine göre
+                    özelleştirebilecekler.</li>
+                <li>v1.3.1 Sıranın hangi takımda olduğunu gösteren bir tik ikonu takımların skor tabelasına
+                    yerleştirildi.</li>
+                <li> v2 Oyunun responsif tasarımları tamamlandı.</li>
+            </ul>
+        </div>
+        <div id="releaseNumber"><button id="btn-release" style="background-color: transparent; border: none; position: absolute;
+                bottom: 0.8em; left:0.8em; color: grey; font-style: italic; font-size: 1 em;">v1.3.0.0</button></div>
+    </div>
+        <script src="tabu.js"></script>
+</body>
+
+</html>
