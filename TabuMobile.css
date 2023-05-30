@@ -1,0 +1,79 @@
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .buttons button {
+    flex: 0 0 calc(33.33% - 10px);
+    
+}
+  
+  .buttons button:last-child {
+    min-width: 232px;
+    margin-top: 10px;
+  }
+  #newCard{
+    padding:10px 10px;
+  }
+  #tabu{
+    padding:10px 10px;
+  }
+  #pass{
+    padding:10px 10px;
+  }
+  .icons {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 2em; left: 3em;
+    flex-direction: row;
+  }
+  #gear {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(-50%, -50%);
+  }
+  
+  #fa-question {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(50%, -50%);
+  }
+  #oyunTanitimi{
+    position: relative;
+    top: 40em;
+    margin-bottom: 24em !important;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+ .sayfa{
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 7em;
+ }
+#kapat{
+  position: absolute;
+  top: -0.9em;
+}
+#releaseNotes{
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 11px;
+  position: relative;
+  top: 15em;
+  left: 50%;
+  margin-bottom: 15em;
+  transform: translate(-50%, -50%);
+
+}
